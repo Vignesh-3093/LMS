@@ -7,13 +7,15 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Leave } from "./Leave";
+import { Leave } from "./Leaves";
 
 export enum UserRole {
   USER = "USER",
   MANAGER = "MANAGER",
   HR = "HR",
   ADMIN = "ADMIN",
+  EMPLOYEE = "EMPLOYEE",
+  NONE ="NONE"
 }
 
 @Entity()

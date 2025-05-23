@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { AppDataSource } from "./data-source";
 import { User, UserRole } from "./src/entities/User";
-import { Leave, LeaveType, LeaveStatus } from "./src/entities/Leave";
+import { Leave, LeaveType, LeaveStatus } from "./src/entities/Leaves";
 import bcrypt from "bcrypt";
 
 async function seed() {
@@ -29,6 +29,8 @@ async function seed() {
         role: "Admin" as UserRole,
         leaveBalancePaid: 20,
         leaveBalanceSick: 15,
+        createdAt: new Date(),
+    updatedAt: new Date(),
       },
       {
         email: "manager@example.com",
@@ -37,6 +39,8 @@ async function seed() {
         role: "Manager" as UserRole,
         leaveBalancePaid: 15,
         leaveBalanceSick: 10,
+        createdAt: new Date(),
+    updatedAt: new Date(),
       },
       {
         email: "hr@example.com",
@@ -45,15 +49,20 @@ async function seed() {
         role: "HR" as UserRole,
         leaveBalancePaid: 18,
         leaveBalanceSick: 12,
+        createdAt: new Date(),
+    updatedAt: new Date(),
       },
       {
-        email: "employee@example.com",
-        password: "employeepass",
-        name: "Employee User",
-        role: "User" as UserRole,
-        leaveBalancePaid: 12,
-        leaveBalanceSick: 8,
-      },
+  email: "employee@example.com",
+  password: "employeepass",
+  name: "Employee User",
+  role: UserRole.EMPLOYEE,  // <-- fix here, use UserRole enum properly
+  leaveBalancePaid: 12,
+  leaveBalanceSick: 8,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+}
+
     ];
 
     // Hash passwords and save users
@@ -70,7 +79,7 @@ async function seed() {
     console.log("Users seeded");
 
     // Use saved user entities for leavesData
-    const employeeUser = users.find((u) => u.role === "User");
+    const employeeUser = users.find((u) => u.role === UserRole.EMPLOYEE);
     if (!employeeUser) throw new Error("Employee user not found");
 
     // Create leave requests with correct user entity

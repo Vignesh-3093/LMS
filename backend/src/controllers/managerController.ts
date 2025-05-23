@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../data-source";
 import { User, UserRole } from "../entities/User";
-import { Leave, LeaveStatus } from "../entities/Leave";
+import { Leave, LeaveStatus } from "../entities/Leaves";
 import bcrypt from "bcrypt";
 import { In } from "typeorm";
 import { Between } from "typeorm";

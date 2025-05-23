@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../data-source";
 import { User, UserRole } from "../entities/User";
-import { Leave, LeaveStatus } from "../entities/Leave";
+import { Leave, LeaveStatus } from "../entities/Leaves";
 import bcrypt from "bcrypt";
-
 const ADMIN_APPROVAL_THRESHOLD = 5; // days threshold for Admin approval of Manager/User leaves
 
 // 1. Create user (HR, Manager, Employee) by Admin
